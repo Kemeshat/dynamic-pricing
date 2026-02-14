@@ -11,14 +11,14 @@ const products = [
 for (const product of products) {
     let discount = 0;
 
-    switch (product.name) {
-        case "Ipad":
+    switch (product.category) {
+        case "Electronics":
             discount= 0.20; // 20% discount for Electronics
             break;
-        case "Pants":
+        case "Apparel":
             discount = 0.15; // 15% discount for Apparel
             break;
-        case "Milk":
+        case "Grocery":
             discount = 0.10; // 10% discount for Grocery
             break;
         
@@ -29,3 +29,20 @@ for (const product of products) {
     product.promoPrice = (product.price * (1 - discount)).toFixed(2);
 }
 console.log(products);
+
+ // Step 4: Create a variable customerType and apply an additional discount
+let customerType = "Student"; // Example: "Student", "Senior", or "Regular"
+let customerExtraDiscount = 0;
+
+if (customerType === "Student") {
+    customerExtraDiscount = 0.05; // Additional 5% discount for students
+    discountMessage = "Customer Type: Student - Additional 5% discount applied.";
+} else if (customerType === "Senior") {
+    customerExtraDiscount = 0.07; // Additional 7% discount for seniors
+    discountMessage = "Customer Type: Senior - Additional 7% discount applied.";
+}
+
+console.log("\n--- Customer Type Discount Information ---");
+console.log("Customer extra discount rate:", customerExtraDiscount);
+
+
