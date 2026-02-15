@@ -26,23 +26,23 @@ for (const product of products) {
                 discount= 0; // No discount for other categories
 
     }
-    product.promoPrice = (product.price * (1 - discount)).toFixed(2);
+    product.discountedPrice = (product.price * (1 - discount)).toFixed(2);
+    product.discount=discount;
 }
 console.log(products);
 
  // Step 4: Create a variable customerType and apply an additional discount
 let customerType = "Student"; // Example: "Student", "Senior", or "Regular"
-let customerExtraDiscount = 0;
 
-if (customerType === "Student") {
-    customerExtraDiscount = 0.05; // Additional 5% discount for students
-    discountMessage = "Customer Type: Student - Additional 5% discount applied.";
-} else if (customerType === "Senior") {
-    customerExtraDiscount = 0.07; // Additional 7% discount for seniors
-    discountMessage = "Customer Type: Senior - Additional 7% discount applied.";
+function applyCustomerDiscount(basePrice, customerType) {
+    let additionalDiscount = 0;
+
+    if (customerType === "Student") {
+        additionalDiscount = 0.05; // 5% additional discount for students
+    } else if (customerType === "Senior") {
+        additionalDiscount = 0.07; // 7% additional discount for seniors
+    } else {
+        additionalDiscount = 0; // No additional discount for regular customers
+    }
+    return basePrice * (1 - additionalDiscount);
 }
-
-console.log("\n--- Customer Type Discount Information ---");
-console.log("Customer extra discount rate:", customerExtraDiscount);
-
-
