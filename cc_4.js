@@ -46,3 +46,29 @@ function applyCustomerDiscount(basePrice, customerType) {
     }
     return basePrice * (1 - additionalDiscount);
 }
+
+//simulate a checkout process
+
+console.log ("===CHECKOUT SIMULATION===");
+for (let customerNum=1; customerNum<=3; customerNum++) {
+    console.log(`Customer ${customerNum} (${customerType}):`);
+
+    const types = ["Student", "Senior", "Regular"];
+    const assignedType = types[Math.floor(Math.random() * types.length)];
+    console.log(`Customer Type: ${assignedType}`);
+
+    let totalCost = 0;
+    const customerCart=[];
+    for (let i=0; i<3; i++) {
+        const product=products[i];
+
+        if (product.inventory > 0) {
+            const finalPrice = applyCustomerDiscount(product.discountedPrice, assignedType);
+            customerCart.push({...product, finalPrice: finalPrice.toFixed(2)});
+            totalCost += parseFloat(finalPrice);
+            product.inventoryCount -= 1; // Reduce inventory by 1 for each purchased item
+        }
+    }
+    console.log(`Total Cost: $${totalCost.toFixed(2)}`);
+    console.log ("---\n");}
+    
